@@ -1,0 +1,95 @@
+:root{
+    --bg-light: #ffffff;
+    --text-light: #1a1a1a;
+
+    --bg-dark: #1e1e1e;
+    --text-dark: #f5f5f5;
+}
+
+body.light{
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+body.dark{
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body{
+    margin: 0;
+    font-family: "Helvetica Noe Display", Helvetica, sans-serif;
+    transition: bacground-color 0.3s ease,
+    color0.3s ease;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #999;
+    color: #fff;
+}
+
+.theme-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px auto 0 auto;
+}
+.theme-switch input[type="checkbox"] {
+    display: none;
+}
+.theme-switch label {
+    cursor: pointer;
+    width: 60px;
+    height: 32px;
+    background: linear-gradient(90deg, #5185e5 0%, #3259f6 100%);
+    border-radius: 32px;
+    position: relative;
+    transition: background 0.3s;
+    box-shadow: 0 2px 8px rgba(81,133,229,0.08);
+}
+.theme-switch label::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1), background 0.3s;
+    box-shadow: 0 2px 8px rgba(81,133,229,0.10);
+}
+.theme-switch input:checked + label {
+    background: linear-gradient(90deg, #232526 0%, #66a6ff 100%);
+}
+.theme-switch input:checked + label::after {
+    transform: translateX(28px);
+    background: #66a6ff;
+}
+.theme-switch .switch-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #5185e5;
+    transition: color 0.3s;
+}
+.theme-switch input:checked + label .switch-icon {
+    left: 38px;
+    color: #66a6ff;
+}
