@@ -1,39 +1,32 @@
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-const body = document.body;
-const themeKey = "theme";
-const themeToggle = document.getElementById("themeToggle");
-const switchIcon = document.querySelector('.switch-icon');
+(() => {
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const body = document.body;
+  const themeKey = "theme";
+  const toggle = document.getElementById("themeToggle");
 
-function applyTheme(theme) {
-    body.classList.remove("dark", "light");
-    body.classList.add(theme);
-    if (themeToggle) {
-        themeToggle.checked = theme === "dark";
-        // if (switchIcon) switchIcon.textContent = theme === "dark" ? "☀️" : "🌙";
-    }
-}
+  const applyTheme = theme => {
+    body.classList.toggle("dark", theme === "dark");
+    body.classList.toggle("light", theme === "light");
 
-function getSystemTheme() {
-    return prefersDark.matches ? "dark" : "light";
-}
+    if (toggle) toggle.checked = theme === "dark";
+  };
 
-function setTheme(theme) {
+  const getSystemTheme = () => (prefersDark.matches ? "dark" : "light");
+
+  const setTheme = theme => {
     applyTheme(theme);
     localStorage.setItem(themeKey, theme);
-}
+  };
 
-setTheme(localStorage.getItem(themeKey) || getSystemTheme());
+  setTheme(localStorage.getItem(themeKey) || getSystemTheme());
 
-prefersDark.addEventListener("change", () => {
-    if (!localStorage.getItem(themeKey)) {
-        setTheme(getSystemTheme());
-    }
-});
+  prefersDark.addEventListener("change", () => {
+    if (!localStorage.getItem(themeKey)) setTheme(getSystemTheme());
+  });
 
-if (themeToggle) {
-    themeToggle.addEventListener("change", () => {
-        const newTheme = themeToggle.checked ? "dark" : "light";
-        setTheme(newTheme);
-    });
-}
-
+  if (toggle) {
+    toggle.addEventListener("change", () =>
+      setTheme(toggle.checked ? "dark" : "light")
+    );
+  }
+})();
