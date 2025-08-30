@@ -5,3 +5,4 @@ It automatically detects the user's system theme preference (light or dark) and 
 The chosen theme is stored in localStorage, so the preference is saved across sessions.
 
 ---
+Contributer : Suman Kar
